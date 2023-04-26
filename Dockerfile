@@ -4,8 +4,6 @@ ROM python:3.9-slim-buster
 #  O Diretório usando é /app
 WORKDIR /app
 
-RUN curl parrot.live 
-
 # Pegar ps aux para ver o servidor
 
 RUN apt-get update && apt-get install -y procps

@@ -9,7 +9,7 @@
 - $ ``container="my_empresa_server"``
 - $ ``port="8089"``
 ## 3. Construa a imagem a partir do Dockerfile da repo
--  $ ``docker build -t $name .``
+-  $ ``docker build -t $img.``
 
 ## 4. Rode o container a partir da imagem gerada e mapeado nas portas 8080 (mesma porta pra interno e externo)
 -  $ ``docker run -d -p $port:8080 -it --rm --name $container $img``
@@ -37,6 +37,7 @@
 
 ## Uma vez que tenha conseguido rodar podemos observar a máquina rodando o commando
 - $ ``docker exec -it $container /bin/bash``
+
 
 ### Dentro podemos usar ``ps aux`` para observar o servidor http rodando
 ### Rode ``exit`` para sair do modo interativo
