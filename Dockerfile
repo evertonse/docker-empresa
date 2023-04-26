@@ -1,5 +1,5 @@
 #  Imagem base decente para o projeto python bem leve do repositório
-ROM python:3.9-slim-buster
+FROM python:3.9-slim-buster
 
 #  O Diretório usando é /app
 WORKDIR /app
