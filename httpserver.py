@@ -30,10 +30,12 @@ print("server started", PORT)
 
 while True:
     conn, client = s.accept()
-    print ("server aceitou", client)
+    print("server aceitou", client)
 
     data = conn.recv(1024)
-    print ("server received data")
+    print("server recebeu dado")
     conn.sendall("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + html)
 
+    print("server enviou dado")
     conn.close()
+    print("server fechou comunicação")
