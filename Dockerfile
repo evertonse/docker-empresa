@@ -15,7 +15,7 @@ COPY . .
 EXPOSE 8080
 
 #  Começamos o servidor de html da empresa 
-CMD [ "python", "httpserver.py" ]
+CMD [ "python3", "httpserver.py" ]
 
 # $ img="empresa_server_http"
 # $ container="my_empresa_server"

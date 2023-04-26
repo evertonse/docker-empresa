@@ -9,12 +9,17 @@
 - $ ``container="my_empresa_server"``
 - $ ``port="8080"``
 ## 3. Construa a imagem a partir do Dockerfile da repo
--  $ ``docker build -t $img.``
-
+-  $ ``docker build -t $img .``
 ## 4. Rode o container a partir da imagem gerada e mapeado nas portas 8080 (mesma porta pra interno e externo)
 -  $ ``docker run -d -p $port:8080 -it --name $container $img``
 
-## O que o commando significa 
+### Caso container já exista na maquina pode rodar
+- $ ``docker rm -f $container``
+### Em seguinda repita o commando 4.
+
+### Caso a porta ja esteja sendo usada rode ``docker ps | grep $port`` descubra qual o container e o remova
+
+## O que o commando 4. significa 
 
 -d roda como daemon em background
 
@@ -22,17 +27,15 @@
 
  -it [i]terativo e com [t]erminal
 
- --rm  remove container ao finalizar
-
  --name  nome do container
 
 ## 5. Para ter certeza que o container esta rodando use o comando:
 - $ ``docker ps | grep $container``
 
-## 6. Se você não ver o container, isso quer dizer que pode ter parada o container por algum motivo
-## Veja se consegue achar ele com esse commando
+###  Se você não ver o container, isso quer dizer que pode ter parada o container por algum motivo
+### Veja se consegue achar ele com esse commando
 - $ ``docker ps -a | grep $container``
-## Se rodando esse commando, for encontrado o container, então dê start
+### Se rodando esse commando, for encontrado o container, então dê start
 - $ ``docker start``
 
 ## Uma vez que tenha conseguido rodar podemos observar a máquina rodando o commando
@@ -46,4 +49,28 @@ root@36325ffb5139:/app# ps aux
 
 ### Rode ``exit`` para sair do modo interativo
 
-### Rode ``wget http://localhost:$port`` para receber a paginas html docontainer rodando
+# 6. Rode ``wget http://localhost:$port`` para receber a paginas html docontainer rodando
+
+
+
+### Docker file :o
+```
+#  Imagem base decente para o projeto python bem leve do repositório
+FROM python:3.9-slim-buster
+
+#  O Diretório usando é /app
+WORKDIR /app
+
+# Pegar ps aux para ver o servidor
+
+RUN apt-get update && apt-get install -y procps
+
+#  Copiar html e server da empresa
+COPY . .
+
+#  Expoõe na porta 8080
+EXPOSE 8080
+
+#  Começamos o servidor de html da empresa 
+CMD [ "python", "httpserver.py" ]
+```

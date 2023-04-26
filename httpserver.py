@@ -3,7 +3,7 @@ import socket
 HOST = ''
 PORT = 8080
 # wget http://localhost:8080
-html = """
+html = b"""
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -34,7 +34,7 @@ while True:
 
     data = conn.recv(1024)
     print("server recebeu dado")
-    conn.sendall("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + html)
+    conn.sendall(b"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" + html)
 
     print("server enviou dado")
     conn.close()
